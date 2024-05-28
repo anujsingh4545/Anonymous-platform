@@ -11,7 +11,7 @@ const Page = () => {
   const [socket, setSocket] = useState<any>(null);
 
   useEffect(() => {
-    const socket = io("");
+    const socket = io("https://anonymous-platform-backend.onrender.com");
 
     setSocket(socket);
 
