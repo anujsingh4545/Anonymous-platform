@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sec_color {
+  @apply bg-zinc-900;
+}
+
+.input_box1 {
+  @apply outline-none w-full bg-transparent border border-zinc-600 py-3 rounded-full px-5 placeholder:text-zinc-300 text-[0.8rem];
+}
+.submit_btn1 {
+  @apply outline-none  px-10 py-3 rounded-full text-[0.8rem] flex items-center justify-center gap-x-3 hover:scale-105 transform ease-in-out duration-150;
+}
+
+.textarea1 {
+  @apply outline-none w-full bg-transparent bg-zinc-800 py-3 rounded-lg px-5 placeholder:text-zinc-300 text-[0.8rem];
+}
+
+.sidebar_btn1 {
+  @apply outline-none  text-[0.95rem] w-full  px-5 rounded-lg  font-serif py-4 hover:bg-zinc-700  transform ease-in-out duration-150 text-left;
+}
+
+.postView1 {
+  @apply flex items-center justify-center text-[0.8rem] gap-x-2 font-sans hover:text-zinc-200;
+}
+
+body {
+  @apply bg-black max-w-[90rem] mx-auto text-white tracking-widest min-w-[375px];
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
