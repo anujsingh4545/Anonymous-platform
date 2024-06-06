@@ -8,7 +8,7 @@ import { redisClient } from "@/Redis";
 const formData = z.object({
   title: z.string().min(5, { message: "Title must be at least 5 characters long" }).max(100, { message: "Title cannot exceed 100 characters" }),
   summary: z.string().min(20, { message: "Summary must be at least 20 characters long" }).max(500, { message: "Summary cannot exceed 500 characters" }),
-  token: z.string().min(5, { message: "Please Verify First to continue." }),
+  // token: z.string().min(5, { message: "Please Verify First to continue." }),
 });
 
 export const POST = async (req: NextRequest) => {
@@ -34,21 +34,21 @@ export const POST = async (req: NextRequest) => {
 
     await redisClient.setex(`RATE_LIMIT:${session.user.id}`, 10, 1);
 
-    let formData = new FormData();
-    formData.append("secret", process.env.SECRETKEY!);
-    formData.append("response", body.token);
-    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-    const result = await fetch(url, {
-      body: formData,
-      method: "POST",
-    });
-    const challengeSucceeded = (await result.json()).success;
+    // let formData = new FormData();
+    // formData.append("secret", process.env.SECRETKEY!);
+    // formData.append("response", body.token);
+    // const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+    // const result = await fetch(url, {
+    //   body: formData,
+    //   method: "POST",
+    // });
+    // const challengeSucceeded = (await result.json()).success;
 
-    console.log(challengeSucceeded);
+    // console.log(challengeSucceeded);
 
-    if (!challengeSucceeded) {
-      return Response.json({ message: "Invalid reCAPTCHA token" });
-    }
+    // if (!challengeSucceeded) {
+    //   return Response.json({ message: "Invalid reCAPTCHA token" });
+    // }
 
     await prisma.post.create({
       data: {

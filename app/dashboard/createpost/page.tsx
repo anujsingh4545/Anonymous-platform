@@ -29,7 +29,7 @@ const Page = () => {
     const data = {
       title: e.target.title.value,
       summary: e.target.summary.value,
-      token,
+      // token,
     };
 
     await axios
@@ -58,7 +58,7 @@ const Page = () => {
       <textarea name="summary" className="textarea1 mt-5" rows={8} placeholder="Describe your post..." />
 
       <section className=" mt-5  flex items-center justify-start ">
-        <Turnstile onSuccess={(token) => setToken(token)} siteKey="0x4AAAAAAAbZDat37Ruwesr_" />
+        {/* <Turnstile onSuccess={(token) => setToken(token)} siteKey="0x4AAAAAAAbZDat37Ruwesr_" /> */}
       </section>
 
       <section className=" flex w-full items-center justify-end gap-x-3 text-[0.8rem] font-mono mt-5  ">
