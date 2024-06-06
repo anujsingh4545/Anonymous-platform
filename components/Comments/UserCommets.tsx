@@ -43,7 +43,7 @@ const UserCommets = ({ id, comment, userId, postId, time, likeDislike, setData, 
   const [socket, setSocket] = useState<any>(null);
 
   useEffect(() => {
-    const socket = io("https://anonymous-platform-backend.onrender.com/");
+    const socket = io("https://anonymous-platform-backend.onrender.com");
     setSocket(socket);
     socket.on("connect", () => {
       console.log("connected");
@@ -65,10 +65,9 @@ const UserCommets = ({ id, comment, userId, postId, time, likeDislike, setData, 
       .post("https://anonymousplatform.vercel.app/api/posts/delcomment", { id })
       .then((res: AxiosResponse) => {
         if (res.data.success) {
-          console.log(socket);
-
-            if (postUserid != session.data.user.id) socket.emit("Dcomment", { userId:postUserid, postId, comment });
           deleteComment(id, setData);
+          console.log(postUserid , session.data.user.id)
+          if (postUserid != session.data.user.id) socket.emit("Dcomment", { userId: postUserid, postId, comment });
           dispatch(callReload());
           toast.success(res.data.message);
         }

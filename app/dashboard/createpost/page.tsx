@@ -2,13 +2,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 import { io } from "socket.io-client";
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
-
   const [socket, setSocket] = useState<any>(null);
+  const [token, setToken] = useState<string>();
 
   useEffect(() => {
     const socket = io("https://anonymous-platform-backend.onrender.com");
@@ -28,6 +29,7 @@ const Page = () => {
     const data = {
       title: e.target.title.value,
       summary: e.target.summary.value,
+      token,
     };
 
     await axios
@@ -54,6 +56,10 @@ const Page = () => {
     <form className=" flex flex-col w-full " onSubmit={CreatePost}>
       <textarea name="title" className="textarea1" rows={2} placeholder="Enter post title..." />
       <textarea name="summary" className="textarea1 mt-5" rows={8} placeholder="Describe your post..." />
+
+      <section className=" mt-5  flex items-center justify-start ">
+        <Turnstile onSuccess={(token) => setToken(token)} siteKey="0x4AAAAAAAbZDat37Ruwesr_" />
+      </section>
 
       <section className=" flex w-full items-center justify-end gap-x-3 text-[0.8rem] font-mono mt-5  ">
         <button type="reset" className=" text-zinc-300 px-10 py-2 rounded-full hover:bg-zinc-700" disabled={loading}>

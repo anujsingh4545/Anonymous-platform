@@ -24,7 +24,7 @@ const CommentSection = ({ userId, postId, comment, setData }: CommentProps) => {
   const session: any = useSession();
 
   useEffect(() => {
-    const socket = io("https://anonymous-platform-backend.onrender.com/");
+    const socket = io("https://anonymous-platform-backend.onrender.com");
     setSocket(socket);
     socket.on("connect", () => {
       console.log("connected");

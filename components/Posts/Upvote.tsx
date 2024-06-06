@@ -37,7 +37,7 @@ const Upvote = ({ userId, postId, upvotes }: UpvoteProps) => {
   const userHasVoted: any = useMemo(() => checkUserVote(upvotes, session.data.user.id), [upvotes, session]);
 
   useEffect(() => {
-    const socket = io("https://anonymous-platform-backend.onrender.com/");
+    const socket = io("https://anonymous-platform-backend.onrender.com");
     setSocket(socket);
     socket.on("connect", () => {
       console.log("connected");
